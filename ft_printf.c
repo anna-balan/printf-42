@@ -10,55 +10,47 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "ft_printf.h"
 
-int	convert_frmt(va_list args, char format)
+int	ft_check_type(va_list arg, char type)
 {
-	int	num_char;
+	int	char_count;
 
-	num_char = 0;
-	if (format == 'c')
-		num_char = print_char(va_arg(args, int));
-	else if (format == 's')
-		num_char = print_str(va_arg(args, char *));
-	else if (format == 'p')
-		num_char = print_pointer(va_arg(args, uintptr_t));
-	else if (format == 'd' || format == 'i')
-		num_char = print_integer(va_arg(args, int));
-	else if (format == 'u')
-		num_char = print_unsigned_num(va_arg(args, unsigned int));
-	else if (format == 'x' || format == 'X')
-		num_char = print_hexadecimal(va_arg(args, int), format);
-	else if (format == '%')
-	{
-		num_char = 1;
-		print_char(format);
-	}
-	return (num_char);
+	char_count = 0;
+	if (type == 'c')
+		char_count = ft_print_char(va_arg(arg, int));
+	else if (type == 's')
+		char_count = ft_print_str(va_arg(arg, char *));
+
+	return (char_count);
 }
 
 int	ft_printf(const char *string, ...)
 {
-	va_list	args;
+	va_list	arg;
 	int		i;
 	int		printed_chars;
 
 	i = 0;
 	printed_chars = 0;
-	va_start(args, string);
+	va_start(arg, string);
 	while (string[i] != '\0')
 	{
 		if (string[i] == '%')
 		{
-			printed_chars += convert_frmt(args, string[i + 1]);
+			printed_chars += ft_check_type(arg, string[i + 1]);
 			i++;
 		}
 		else
-			printed_chars += print_char(string[i]);
+			printed_chars += ft_print_char(string[i]);
 		i++;
 	}
-	va_end(args);
+	va_end(arg);
 	return (printed_chars);
+}
+
+int	main(void)
+{
+	ft_printf("%c", 'f');
+	return (0);
 }

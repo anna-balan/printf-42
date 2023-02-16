@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbalan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 20:51:19 by hbalan            #+#    #+#             */
-/*   Updated: 2023/02/15 20:51:21 by hbalan           ###   ########.fr       */
+/*   Created: 2023/02/16 16:17:38 by hbalan            #+#    #+#             */
+/*   Updated: 2023/02/16 16:17:40 by hbalan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
-
-int		ft_printf(const char *string, ...);
-int		ft_print_char(int c);
-int		ft_print_str(char *str);
-
-
-#endif
+int	ft_print_char(int c)
+{
+	write(1, &c, 1);
+	return (1);
+}
