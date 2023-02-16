@@ -23,10 +23,10 @@ Values of the passed arguments can be accessed through the header file named as:
 
 | **Methods**  | **Description** |
 | ------------- |:-------------:|
-| va_start(va_list ap, argN)    | This enables access to variadic function arguments.     |
-| left bar      | right bar     |
-| left baz      | right baz     |
-
+| va_start(va_list ap, argN)    | This enables access to variadic function arguments. where *va_list* will be the pointer to the last fixed argument |
+| va_arg(va_list ap, type)    | This one accesses the next variadic function argument.|
+| va_copy(va_list dest, va_list src)      | This makes a copy of the variadic function arguments.|
+| va_end(va_list ap)	     | This ends the traversal of the variadic function arguments.     |
 #### GNU version of `printf`
 ``` c
 __printf (const char *format, ...)
