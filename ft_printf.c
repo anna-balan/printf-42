@@ -21,7 +21,11 @@ int	ft_check_type(va_list arg, char type)
 		char_count = ft_print_char(va_arg(arg, int));
 	else if (type == 's')
 		char_count = ft_print_str(va_arg(arg, char *));
-
+	else if (type == '%')
+	{
+		char_count = 1;
+		write(1, "%", 1);
+	}
 	return (char_count);
 }
 
@@ -51,6 +55,6 @@ int	ft_printf(const char *string, ...)
 
 int	main(void)
 {
-	ft_printf("%c", 'f');
+	ft_printf("this is 1 %s with %s %s", "test", "multiple", "strings");
 	return (0);
 }
