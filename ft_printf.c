@@ -6,12 +6,13 @@
 /*   By: hbalan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:50:29 by hbalan            #+#    #+#             */
-/*   Updated: 2023/02/21 16:59:00 by hbalan           ###   ########.fr       */
+/*   Updated: 2023/02/21 18:24:56 by hbalan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include <stdio.h>
+#include <ctype.h>
 int	ft_print_str(char *str)
 {
 	int	i;
@@ -75,8 +76,66 @@ int ft_putnbr_unsigned(unsigned int x) {
     return digits;
 }
 
+// int ft_print_hex(unsigned int num, char type) 
+// {
+//      int count = 0;
+//     char hex[16];
+//     int i = 0;
+
+//     while (num > 0) {
+//         int digit = num % 16;
+//         if (digit < 10) {
+//             hex[i] = digit + '0';
+//         } else {
+//             hex[i] = digit - 10 + (type == 'X' ? 'A' : 'a');
+//         }
+//         num /= 16;
+//         i++;
+//     }
+//     hex[i] = '\0';
 
 
+
+//     while (i > 0) {
+//         i--;
+//         count++;
+//         write(1, &hex[i], 1);
+//     }
+
+//     return count;
+// }
+int ft_conv_hexa(unsigned int num, char type)
+{
+    int count = 0; // initialize the counter variable to 0
+
+    if (num >= 16)
+    {
+        count += ft_conv_hexa(num / 16, type);
+        count += ft_conv_hexa(num % 16, type);
+    }
+    else
+    {
+        if (num <= 9)
+        {
+            ft_print_char(num + '0');
+            count++;
+        }
+        else
+        {
+            if (type == 'x')
+            {
+                ft_print_char(num - 10 + 'a');
+                count++;
+            }
+            if (type == 'X')
+            {
+                ft_print_char(num - 10 + 'A');
+                count++;
+            }
+        }
+    }
+    return count; // return the total count of printed characters
+}
 int	ft_check_type(va_list *arg, char type, int char_count)
 {
 
@@ -88,6 +147,8 @@ int	ft_check_type(va_list *arg, char type, int char_count)
 		char_count += ft_putnbr(va_arg(*arg, int));
 	else if (type == 'u')
 		char_count += ft_putnbr_unsigned(va_arg(*arg, unsigned int));
+	else if (type == 'x' || type == 'X')
+		char_count += ft_conv_hexa(va_arg(*arg, unsigned int), type);
 	else if (type == '%')
 		char_count += ft_print_char('%');
 	return (char_count);
@@ -118,131 +179,28 @@ int	ft_printf(const char *format, ...)
 	return (char_count);
 }
 
-// int	main(void)
-// {
-// 	// char str[] = "hello";
-// 	// char str2[] = "world";
-// 	// ft_printf("this is 1  %s and %s and %s",  str, str2, "more");
-// 	// ft_printf("\nChars %c and %c and %c",  'a', 'b', 'c');
-// 	// printf("%d", ft_printf("\n%%"));
-// 	// printf("%d",ft_printf("this is a %s", "test"));
-// 	//ft_printf("%d", 10);
-// 	//printf("%d ddndndn\n", ft_putnbr(12));
-// 	//ft_printf("%d %i", 2147483647, 7878);
-// 	//printf("%s counter %d", "\n", ft_putnbr(-2147483648));
-// 	//ft_putnbr(-2147483647);
-//  	//ft_printf("%d%d%d%d", 10, 20, 30, 5);
-
-//  	 //ft_printf("%u to the power of %u is %u", 2, 32, (unsigned int)4294967295);
-//  	  ft_printf("%u to\n %u and %u", 2, 32, (unsigned int)4294967295);
-// 	return (0);
-// }
-/*void    ft_putchar(int c, int *len)
+int	main(void)
 {
-        write(1, &c, 1);
-        *len += 1;
+	// char str[] = "hello";
+	// char str2[] = "world";
+	// ft_printf("this is 1  %s and %s and %s",  str, str2, "more");
+	// ft_printf("\nChars %c and %c and %c",  'a', 'b', 'c');
+	// printf("%d", ft_printf("\n%%"));
+	// printf("%d",ft_printf("this is a %s", "test"));
+	//ft_printf("%d", 10);
+	//printf("%d ddndndn\n", ft_putnbr(12));
+	//ft_printf("%d %i", 2147483647, 7878);
+	//printf("%s counter %d", "\n", ft_putnbr(-2147483648));
+	//ft_putnbr(-2147483647);
+ 	//ft_printf("%d%d%d%d", 10, 20, 30, 5);
+
+ 	 //ft_printf("%u to the power of %u is %u", 2, 32, (unsigned int)4294967295);
+ 	  //ft_printf("%u to\n %u and %u", 2, 32, (unsigned int)4294967295);
+
+ 	//   char str[] = "hello";
+ 	//   void *ptr = str;
+	// printf("Pointer address: %p\n", ptr);
+
+	printf("%d", ft_printf("this is the real number: %X", 256));
+	return (0);
 }
-void    ft_putstr(char *ap, int *len)
-{
-        int     i;
-        i = 0;
-        if (!ap)
-        {
-                write(1, "(null)", 6);
-                *len += 6;
-        }
-        while (ap[i])
-        {
-                ft_putchar(ap[i], len);
-                i++;
-        }
-}
-void	ft_format_check(va_list *ap, int *len, char format)
-{
-	if (format == 'c')
-		ft_putchar(va_arg(*ap, int), len);
-	else if (format == 's')
-		ft_putstr(va_arg(*ap, char *), len);
-	
-	else if (format == '%')
-		ft_putchar('%', len);
-}	
-
-int	ft_printf(const char *placeholder, ...)
-{
-	int		len;
-	int		i;
-	va_list	ap;
-
-	len = 0;
-	i = 0;
-	va_start(ap, placeholder);
-	while (placeholder[i])
-	{
-		if (placeholder[i] == '%')
-		{
-			ft_format_check(&ap, &len, placeholder[i + 1]);
-			i++;
-		}
-		else
-			ft_putchar((char)placeholder[i], &len);
-		i++;
-	}
-	va_end(ap);
-	return (len);
-}*/
-/*int ft_strlen(const char *s) {
-    int len = 0;
-    while (s[len] != '\0') {
-        len++;
-    }
-    return len;
-}
-
-void ft_putchar(char c) {
-    write(1, &c, 1);
-}
-
-void ft_putstr(const char *s) {
-    int i = 0;
-    while (s[i] != '\0') {
-        ft_putchar(s[i]);
-        i++;
-    }
-}
-
-int ft_printf(const char *format, ...) {
-    va_list args;
-    va_start(args, format);
-
-    int chars_written = 0;
-
-    while (*format != '\0') {
-        if (*format == '%') {
-            format++;
-            if (*format == 'c') {
-                char c = va_arg(args, int);
-                ft_putchar(c);
-                chars_written++;
-            } else if (*format == 's') {
-                char *s = va_arg(args, char *);
-                if (s == NULL) {
-                    s = "(null)";
-                }
-                int len = ft_strlen(s);
-                ft_putstr(s);
-                chars_written += len;
-            } 
-            format++;
-        } else {
-            ft_putchar(*format);
-            chars_written++;
-            format++;
-        }
-    }
-
-    va_end(args);
-    return chars_written;
-}*/
-
-
