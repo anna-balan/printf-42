@@ -1,4 +1,18 @@
 # printf-42
+### conversions to recreate
+
+Name  | Status
+------------- | -------------
+%c Prints a single character     |  ✅ 
+%s Prints a string   |  ✅ 
+%p The void * pointer argument |
+%d Prints a decimal (base 10) number|
+%i Prints an integer in base 10| 
+%u Prints an unsigned decimal (base 10) number| 
+%x Prints a number in hexadecimal (base 16) lowercase format| 
+%X Prints a number in hexadecimal (base 16) uppercase format |
+%% Prints a percent sign |  ✅ 
+ 
 recreation of printf function
 
 ### Why Variadic Functions are Used
