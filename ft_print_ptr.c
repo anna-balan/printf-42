@@ -6,7 +6,7 @@
 /*   By: hbalan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 19:28:03 by hbalan            #+#    #+#             */
-/*   Updated: 2023/02/21 19:50:16 by hbalan           ###   ########.fr       */
+/*   Updated: 2023/02/21 20:21:27 by hbalan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,9 @@ int	ft_print_ptr(unsigned long int ptr)
 	if (ptr == 0)
 	{
 		char_printed += write(1, "0", 1);
-
-		//solution for Linux
-		// write(1, "(nil)", 5);
-		// return (5);
+		/*solution for Linux
+		write(1, "(nil)", 5);
+		return (5);*/
 	}
 	else
 	{
@@ -62,4 +61,3 @@ int	ft_print_ptr(unsigned long int ptr)
 	}
 	return (char_printed);
 }
-

@@ -6,7 +6,7 @@
 /*   By: hbalan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:50:29 by hbalan            #+#    #+#             */
-/*   Updated: 2023/02/21 19:58:16 by hbalan           ###   ########.fr       */
+/*   Updated: 2023/02/21 20:08:39 by hbalan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_check_type(va_list *arg, char type, int char_count)
 {
-
 	if (type == 'c')
 		char_count += ft_print_char(va_arg(*arg, int));
 	else if (type == 's')
@@ -51,7 +50,6 @@ int	ft_printf(const char *format, ...)
 		else
 			char_count += ft_print_char(format[i]);
 		i++;
-
 	}
 	va_end(arg);
 	return (char_count);
@@ -72,8 +70,8 @@ int	ft_printf(const char *format, ...)
 // 	//ft_putnbr(-2147483647);
 //  	//ft_printf("%d%d%d%d", 10, 20, 30, 5);
 
-//  	 //ft_printf("%u to the power of %u is %u", 2, 32, (unsigned int)4294967295);
-//  	  //ft_printf("%u to\n %u and %u", 2, 32, (unsigned int)4294967295);
+//  	 //ft_printf("%u to the power of %u is %u", 2, 32, 4294967295);
+//  	  //ft_printf("%u to\n %u and %u", 2, 32, 4294967295);
 
 //  	  char str[] = "hello";
 //  	  void *ptr = str;
