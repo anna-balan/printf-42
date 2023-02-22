@@ -46,16 +46,17 @@ int	ft_print_ptr(unsigned long int ptr)
 	int	char_printed;
 
 	char_printed = 0;
-	char_printed += write(1, "0x", 2);
+	
 	if (ptr == 0)
 	{
-		char_printed += write(1, "0", 1);
-		/*solution for Linux
+		//char_printed += write(1, "0", 1);
+		//solution for Linux
 		write(1, "(nil)", 5);
-		return (5);*/
+		return (5);
 	}
 	else
 	{
+		char_printed += write(1, "0x", 2);
 		ft_put_ptr(ptr);
 		char_printed += ft_ptr_len(ptr);
 	}

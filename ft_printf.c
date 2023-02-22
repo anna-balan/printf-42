@@ -55,6 +55,37 @@ int	ft_printf(const char *format, ...)
 	return (char_count);
 }
 
+/*check and fix iteration within loop
+int	ft_printf(const char *format, ...)
+{
+	va_list	arg;
+	int		i;
+	int		char_count;
+
+	i = 0;
+	char_count = 0;
+	va_start(arg, format);
+	while (format[i] != '\0')
+	{
+		printf(" before: %d\n", i);
+		if (format[i] == '%')
+		{
+							printf("format case %d\n", i);
+			char_count = ft_check_type(&arg, format[i + 1], char_count);
+
+		}
+		else
+		{
+			char_count += ft_print_char(format[i]);
+							printf("Others: %d\n", i);
+							
+		}
+	++i;
+	}
+	va_end(arg);
+	return (char_count);
+}
+*/
 // int	main(void)
 // {
 // 	// char str[] = "hello";
