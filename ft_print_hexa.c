@@ -6,13 +6,13 @@
 /*   By: hbalan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 19:42:04 by hbalan            #+#    #+#             */
-/*   Updated: 2023/02/21 20:25:40 by hbalan           ###   ########.fr       */
+/*   Updated: 2023/02/24 19:37:49 by hbalan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_hexa(unsigned int num, char type)
+int	ft_print_hexa(unsigned long num, char type)
 {
 	int	count;
 

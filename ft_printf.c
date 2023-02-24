@@ -6,7 +6,7 @@
 /*   By: hbalan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:50:29 by hbalan            #+#    #+#             */
-/*   Updated: 2023/02/21 20:08:39 by hbalan           ###   ########.fr       */
+/*   Updated: 2023/02/24 19:29:49 by hbalan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_check_type(va_list *arg, char type, int char_count)
 	else if (type == 's')
 		char_count += ft_print_str(va_arg(*arg, char *));
 	else if (type == 'p')
-		char_count += ft_print_ptr(va_arg(*arg, unsigned long long));
+		char_count += ft_print_ptr(va_arg(*arg, void *));
 	else if (type == 'd' || type == 'i')
 		char_count += ft_putnbr(va_arg(*arg, int));
 	else if (type == 'u')
